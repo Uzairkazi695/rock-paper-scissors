@@ -1,30 +1,75 @@
-function getComputerChoice(a) {
-    Math.random(Math.floor() * 3) +1;
-    if(a === 1) {
-        a="Rock";
-    } else if(a === 2) {
-        a ==="Paper";
+const choice = ['rock', 'paper', 'scissors'];
+
+// computer choice
+
+function getComputerChoice() {
+    const option = choice[Math.floor(Math.random() *choice.length)];
+    return option;
+}
+getComputerChoice();
+
+// human choice
+
+function getHumanChoice() {
+    let validateInput = false;
+    while(validateInput == false) {
+        const newOption = prompt("rock,paper,scissors");
+        if (newOption == null) {
+            continue;
+        } 
+        const choiceInLower = newOption.toLowerCase();
+        if(choice.includes(choiceInLower)) {
+            validateInput = true;
+            return choiceInLower;
+        }
+    }
+}
+getHumanChoice();
+
+function checkWinner(playerSelection, computerSelection) {
+    if(playerSelection === computerSelection) {
+      return 'tie'
+    } else if(
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper') || (playerSelection === 'paper' && computerSelection === 'rock')) {
+        return "player";
     } else {
-        a === "Scissors"
+        return "computer";
     }
 }
-let choose = prompt("Rocs, Paper, Scissors")
 
-function getHumanChoice(b) {
-    if(b === 1) {
-        b="Rock";
-    } else if(b === 2) {
-        b ==="Paper";
+function playRound(playerSelection, computerSelection) {
+    const result = checkWinner(playerSelection, computerSelection);
+    if(result === "tie") {
+        return "It's draw";
+    } else if(result === "player") {
+        return `You won. ${playerSelection} beats ${computerSelection}`
     } else {
-        b === "Scissors"
+        return `You lose.${computerSelection} beats ${playerSelection}`
     }
 }
 
-let humanScore = 0;
-let computerScore = 0;
-
-function playRound(humanChoice, computerChoice) {
-    if(humanChoice === 'Rock' && computerChoice === 'Rock') {
-        return ''
+function playGame() {
+    let humanScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++)  {
+        const playerSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+        if(checkWinner(playerSelection, computerSelection) == "player"){
+            humanScore++
+        } else if(checkWinner(playerSelection, computerSelection)== "computer") {
+            computerScore++
+        }
+    }
+    console.log("Game over");
+    if(humanScore > computerScore) {
+        console.log("player is the winner");
+    } else if(computerScore > humanScore) {
+        console.log("You lost the match");
+    } else {
+        console.log("it's a tie");
     }
 }
+
+playGame();
