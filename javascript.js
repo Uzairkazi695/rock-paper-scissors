@@ -24,7 +24,7 @@ function getHumanChoice() {
         }
     }
 }
-// getHumanChoice();
+getHumanChoice();
 
 function checkWinner(playerSelection, computerSelection) {
     if(playerSelection === computerSelection) {
@@ -64,11 +64,11 @@ function playGame() {
     }
     console.log("Game over");
     if(humanScore > computerScore) {
-        console.log("player is the winner");
+        alert("You win the Match :)");
     } else if(computerScore > humanScore) {
-        console.log("You lost the match");
+        alert("You lost the match :(");
     } else {
-        console.log("it's a tie");
+        alert("it's a tie!");
     }
 }
 
