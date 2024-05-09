@@ -24,7 +24,7 @@ function getHumanChoice() {
         }
     }
 }
-getHumanChoice();
+// getHumanChoice();
 
 function checkWinner(playerSelection, computerSelection) {
     if(playerSelection === computerSelection) {
