@@ -12,59 +12,64 @@ let maxRound = 5
 
 const choice = ["rock", "paper", "scissors"];
 
-const computerSelection = choice[Math.floor(Math.random() * 3)];
-
+let computerSelection;
+// debugger
 rock.addEventListener('click', ()=>{
+    computerSelection = choice[Math.floor(Math.random() * 3)];
     if(computerSelection === 'rock'){
         displayMessage("it's a tie")
     } else if(computerSelection === 'paper') {
-        displayMessage('Computer win because your selection was rock')
         computerScore++
+        displayMessage(`Computer win because computer selection was ${computerSelection}`)
     } else {
-        displayMessage(`You win the game because computer selection was ${computerSelection}`)
         humanScore++
+        displayMessage(`You win the game because computer selection was ${computerSelection}`)
     }
     finalResult()
-
     endGame()
 })
 paper.addEventListener('click', ()=>{
+    computerSelection = choice[Math.floor(Math.random() * 3)];
     if(computerSelection === 'paper'){
         displayMessage("it's a tie")
     } else if(computerSelection === 'scissors') {
-        displayMessage('Computer win because your selection was paper')
         computerScore++
+        displayMessage(`Computer win because computer selection was ${computerSelection}`)
     } else {
-        displayMessage(`You win the game because computer selection was ${computerSelection}`)
         humanScore++
+        displayMessage(`You win the game because computer selection was ${computerSelection}`)
     }
     finalResult()
-
     endGame()
+        
+    
 })
 scissors.addEventListener('click', ()=>{
+    computerSelection = choice[Math.floor(Math.random() * 3)];
     if(computerSelection === 'scissors'){
         displayMessage("it's a tie")
     } else if(computerSelection === 'rock') {
-        displayMessage('Computer win because your selection was scissors')
         computerScore++
+        displayMessage(`Computer win because computer selection was ${computerSelection}`)
     } else {
+        humanScore++
         displayMessage(`You win the game because computer selection was ${computerSelection}`)
-        computerScore++
     }
     finalResult()
     endGame()
+    
+    
 })
 function finalResult() {
     if((humanScore + computerScore) === maxRound) {
         if(humanScore > computerScore) {
-            result.textContent = 'You won the round'
+            result.textContent = 'You won the round best out of 5'
         } else if(computerScore > humanScore) {
-            result.textContent = 'You lose the round'
+            result.textContent = 'You lose the round best out of 5'
         } else {
             result.textContent = 'It is a tie'
         }
-    }
+    }  
 }
 function endGame() {
     if((humanScore + computerScore)=== maxRound) {
@@ -76,8 +81,8 @@ function endGame() {
 
 
 function displayMessage(message) {
-    playerDisplay.innerHTML = `${message}`
-    ComputerDisplay.innerHTML = humanScore
-    playerScore.innerHTML = computerScore
+    playerDisplay.innerHTML = `<p>${message}</P>`
+    ComputerDisplay.innerHTML = computerScore
+    playerScore.innerHTML = humanScore
 }
 
