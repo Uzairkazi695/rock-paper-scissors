@@ -13,7 +13,6 @@ let maxRound = 5
 const choice = ["rock", "paper", "scissors"];
 
 let computerSelection;
-// debugger
 rock.addEventListener('click', ()=>{
     computerSelection = choice[Math.floor(Math.random() * 3)];
     if(computerSelection === 'rock'){
@@ -73,9 +72,12 @@ function finalResult() {
 }
 function endGame() {
     if((humanScore + computerScore)=== maxRound) {
-        humanScore = 0;
-        computerScore = 0;
-        displayMessage('Restart the game')
+        setTimeout(()=>{
+            humanScore = 0;
+            computerScore = 0;
+            displayMessage('Restart the game')
+            result.textContent = ''
+        },2000)
     }
 }
 
