@@ -6,6 +6,7 @@ const rock = document.querySelector('#rock')
 const paper = document.querySelector('#paper')
 const scissors = document.querySelector('#scissors')
 let result = document.getElementById("result");
+const btn = document.querySelectorAll('button')
 let humanScore = 0
 let computerScore = 0
 let maxRound = 5
@@ -61,6 +62,12 @@ scissors.addEventListener('click', ()=>{
 })
 function finalResult() {
     if((humanScore + computerScore) === maxRound) {
+        btn.forEach((e)=>{
+            e.disabled = true
+            setTimeout(()=>{
+                e.disabled = false
+            },2000)
+        })
         if(humanScore > computerScore) {
             result.textContent = 'You won the round best out of 5'
         } else if(computerScore > humanScore) {
@@ -79,6 +86,7 @@ function endGame() {
             result.textContent = ''
         },2000)
     }
+    
 }
 
 
